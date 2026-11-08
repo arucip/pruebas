@@ -1,0 +1,68 @@
+/* Arucip · secciones de acceso rápido (Triage, Sistemas, Casos) */
+.hub-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+@media(min-width:620px){.hub-grid{grid-template-columns:repeat(3,1fr)}}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:14px;min-height:118px;border-radius:20px;
+  border:1.5px solid color-mix(in srgb,var(--acc) 22%,var(--line));background:var(--surf);color:var(--ink);cursor:pointer;font:inherit;
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 2px 6px -3px rgba(11,38,49,.18);transition:transform .12s,box-shadow .12s}
+.tile:active{transform:scale(.97)}
+.tile b{font:650 .98rem/1.2 var(--sans)}
+.tile small{font:400 .72rem/1.3 var(--sans);color:var(--mut)}
+.tile-i{display:inline-flex;width:40px;height:40px;border-radius:13px;align-items:center;justify-content:center;flex:none;
+  background:linear-gradient(160deg,#2A7F8E,#1F5368);color:#fff}
+.tile-i svg{width:21px;height:21px}
+:root[data-mode=dark] .tile-i{background:linear-gradient(160deg,#3CC2B9,#1E8E8B);color:#042220}
+.hub-hd{display:flex;align-items:center;gap:12px;margin:6px 0 2px}.hub-hd h2{margin:0}
+.hub-h{font:650 .8rem var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:22px 4px 8px}
+.hub-badge{margin:8px 4px 0;font:600 .72rem var(--sans);color:var(--acc);letter-spacing:.02em}
+.hub-note{margin:22px 4px 0}
+.hub-ul,.hub-ol{margin:8px 0 0;padding-left:20px}.hub-ul li,.hub-ol li{margin:0 0 7px;line-height:1.4}
+.hub-ol li::marker{font-weight:700;color:var(--acc)}
+/* enlaces */
+.hl-l,.cr-l{display:flex;flex-direction:column;gap:8px}
+.hl,.cr{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:13px 14px;min-height:54px;border-radius:16px;text-align:left;text-decoration:none;
+  border:1.5px solid var(--line);background:var(--surf);color:var(--ink);font:inherit;cursor:pointer;transition:transform .1s,background .15s}
+.hl:active,.cr:active{transform:scale(.98);background:var(--tint)}
+.hl-t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.hl-t b{font:600 .94rem/1.25 var(--sans)}
+.hl-t small{font:500 .68rem var(--sans);color:var(--mut);letter-spacing:.02em}
+.hl-c{width:18px;height:18px;flex:none;color:var(--mut)}
+.cr{border-color:color-mix(in srgb,var(--acc) 22%,var(--line))}
+/* ABC */
+.abc-w{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.abc{border:1.5px solid color-mix(in srgb,var(--acc) 25%,var(--line));border-radius:20px;background:var(--surf);overflow:hidden}
+.abc summary{display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;list-style:none}
+.abc summary::-webkit-details-marker{display:none}
+.abc summary b{flex:1;font:650 1rem var(--sans)}
+.abc summary .hl-c{transition:transform .2s}
+.abc[open] summary .hl-c{transform:rotate(90deg)}
+.abc-l{display:inline-flex;width:40px;height:40px;border-radius:13px;align-items:center;justify-content:center;font:700 1.3rem var(--serif);color:#fff;
+  background:linear-gradient(160deg,#2A7F8E,#1F5368);box-shadow:inset 0 -3px 0 #D9A441}
+:root[data-mode=dark] .abc-l{background:linear-gradient(160deg,#3CC2B9,#1E8E8B);color:#042220}
+.abc-b{padding:0 14px 14px}
+.abc-b .hl-l{margin-top:12px}
+.tri-t{margin-top:12px}
+
+/* Emergencias: accesos grandes a PARO y PALS */
+.em-b{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+.em-b>*{display:flex;flex-direction:column;gap:2px;min-height:66px;padding:12px 14px;border-radius:16px;text-align:left;text-decoration:none;font:inherit;cursor:pointer;border:1.5px solid #D9A441;color:inherit;background:var(--surf)}
+.em-b b{font:700 1.05rem var(--disp,inherit)}.em-b small{opacity:.8;font-size:.76rem;line-height:1.25}
+.em-paro{background:linear-gradient(160deg,#C9302C,#9E1B17)!important;border-color:#9E1B17!important;color:#fff!important;box-shadow:0 10px 18px -12px rgba(158,27,23,.9)}
+@media (max-width:350px){.em-b{grid-template-columns:1fr}}
+.hub-h2{font:650 .74rem var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--mut);margin:12px 4px 6px}
+
+/* Buscador predictivo */
+.ps{position:relative;width:100%}
+.ps-in{display:flex;align-items:center;gap:8px;height:50px;padding:0 14px;border-radius:16px;background:var(--surf);border:1.5px solid var(--line);box-shadow:var(--sh1,0 1px 2px rgba(30,43,48,.05))}
+.ps-in:focus-within{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 22%,transparent)}
+.ps-in svg{width:20px;height:20px;color:var(--mut);flex:none}
+.ps-in input{flex:1;min-width:0;border:0;outline:0;background:none;color:var(--ink);font:500 1rem var(--sans);height:100%}
+.ps-in input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.ps-r{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:50;margin:0;padding:6px;list-style:none;max-height:min(56vh,420px);overflow:auto;
+  background:var(--surf);border:1.5px solid var(--line);border-radius:16px;box-shadow:0 18px 34px -16px rgba(11,38,49,.55);text-align:left}
+.ps-r li{display:flex;flex-direction:column;gap:1px;padding:10px 12px;border-radius:12px;cursor:pointer}
+.ps-r li[aria-selected=true]{background:var(--tint)}
+.ps-t{font:650 .95rem var(--sans);color:var(--ink)}
+.ps-r small{color:var(--mut);font-size:.76rem}
+.ps-r mark{background:color-mix(in srgb,#D9A441 45%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+.ps-no{color:var(--mut);cursor:default!important;font-size:.9rem}
+#cs-search{margin:0 0 4px}
