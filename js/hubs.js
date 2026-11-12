@@ -73,14 +73,14 @@
   var NOTE = '<p class="hint hub-note">Apoyo a la decisión: no reemplaza el criterio clínico ni el protocolo de tu servicio. Verificá siempre las dosis en la fuente original.</p>';
   var back = '<button class="btn g back" type="button" data-hb>‹ Volver</button>';
 
-  var TRI_SVG = '<svg class="tri-svg" viewBox="0 0 300 232" role="img" aria-label="Triángulo de evaluación pediátrica: apariencia, trabajo respiratorio y circulación a la piel" style="display:block;width:min(100%,340px);margin:6px auto 12px">' +
-    '<polygon points="150,12 286,200 14,200" fill="none" stroke="#17384A" stroke-width="3" stroke-linejoin="round"/>' +
-    '<polygon points="150,12 286,200 150,200" fill="#C2402F" fill-opacity=".16"/><polygon points="150,12 14,200 150,200" fill="#1F7A5A" fill-opacity=".16"/>' +
-    '<circle cx="150" cy="12" r="10" fill="#1F5368"/><circle cx="14" cy="200" r="10" fill="#1F7A5A"/><circle cx="286" cy="200" r="10" fill="#C2402F"/>' +
-    '<g font-family="inherit" font-weight="700" text-anchor="middle" fill="currentColor"><text x="150" y="82" font-size="15" fill="#1F5368">Apariencia</text><text x="150" y="100" font-size="11" font-weight="500">estado neurológico</text>' +
-    '<text x="82" y="160" font-size="13" fill="#1F7A5A">Trabajo</text><text x="82" y="176" font-size="13" fill="#1F7A5A">respiratorio</text>' +
-    '<text x="212" y="160" font-size="12" fill="#C2402F">Circulación</text><text x="212" y="176" font-size="13" fill="#C2402F">a la piel</text></g>' +
-    '<text x="150" y="226" font-size="10" text-anchor="middle" fill="currentColor" opacity=".7">Evaluación en segundos, antes de tocar al paciente</text></svg>';
+  var TRI_SVG = '<svg class="tri-svg" viewBox="0 0 320 250" role="img" aria-label="Triángulo de evaluación pediátrica: apariencia, esfuerzo respiratorio y circulación (color)" style="display:block;width:min(100%,340px);margin:6px auto 12px">' +
+    '<polygon points="160,44 70,196 168,166" fill="#3F2E8C"/>' +
+    '<polygon points="160,44 250,196 168,166" fill="#8CC152"/>' +
+    '<polygon points="70,196 250,196 168,166" fill="#1F93A8"/>' +
+    '<g font-family="inherit" font-weight="700" font-size="12.5" text-anchor="middle" fill="#fff">' +
+    '<rect x="8" y="10" width="112" height="24" rx="12" fill="#3F2E8C"/><text x="64" y="26.5">Apariencia</text>' +
+    '<rect x="166" y="10" width="148" height="24" rx="12" fill="#8CC152"/><text x="240" y="26.5">Esfuerzo respiratorio</text>' +
+    '<rect x="92" y="208" width="136" height="24" rx="12" fill="#1F93A8"/><text x="160" y="224.5">Circulación (color)</text></g></svg>';
   /* ---------- TRIAGE ---------- */
   function renderTriage() {
     var T = D.TRIAGE, host = $("#tri-body");
@@ -91,11 +91,21 @@
         '</ul><div class="hl-l">' + s.t.map(link).join("") + "</div></div></details>";
     }).join("");
     host.innerHTML =
-      '<h2>Emergencias</h2><p class="sub">Orden de trabajo ante un paciente que ingresa: evaluá con el ABC y abrí lo que necesites.</p><div class="hl-l" style="margin:6px 0 10px"><a class="hl" href="#" data-go="cards"><span class="hl-t"><b>Cards: medicación por peso</b><small>Tablas para situaciones críticas</small></span>' + CHEV + '</a><a class="hl" href="#" data-tool="pals"><span class="hl-t"><b>Secuencia PALS</b><small>Evaluación y algoritmos pediátricos</small></span>' + CHEV + '</a></div>' +
+      '<h2>Emergencias</h2><p class="sub">Orden de trabajo ante un paciente que ingresa: evaluá con el ABC y abrí lo que necesites.</p><div class="hl-l" style="margin:6px 0 10px"><a class="hl" href="#" data-go="cards"><span class="hl-t"><b>Cards: medicación por peso</b><small>Tablas para situaciones críticas</small></span>' + CHEV + '</a><a class="hl" href="#" data-tool="pals"><span class="hl-t"><b>Signos vitales por edad (PALS)</b><small>FC, FR, presión arterial e hipotensión</small></span>' + CHEV + '</a></div>' +
       '<div class="card tri-t"><div class="calc"><h3 class="th" style="margin-top:0">' + esc(T.tri.n) + '</h3><p class="hint" style="margin-top:0">' + esc(T.tri.d) + '</p>' + TRI_SVG + '<ul class="hub-ul">' + li(T.tri.pts) + '</ul><button class="btn pri w" type="button" id="em-paro">PARO: si hay que reanimar</button><p class="hint">⚕ Pendiente de revisión médica.</p></div></div>' +
-      '<div class="card cab-n"><div class="calc"><h3 class="th" style="margin-top:0">¿ABC o CAB?</h3><p class="hint" style="margin-top:0">⚕ Pendiente de revisión médica.</p><ul class="hub-ul"><li><b>Paciente que responde, respira y tiene pulso:</b> seguí el orden A-B-C-D-E.</li><li><b>No responde y no respira (o solo boquea) o no tiene pulso:</b> es un paro. No sigas con el ABC: iniciá compresiones (<b>C-A-B</b>) con el botón EMERGENCIA de arriba.</li></ul></div></div>' +
-      '<div class="abc-w">' + abc + "</div>" +
-      '<div class="card"><div class="calc"><h3 class="th" style="margin-top:0">Después del ABC</h3><ul class="hub-ul">' + li(T.prox) + "</ul></div></div>" +
+      '<div class="card cab-n"><div class="calc"><h3 class="th" style="margin-top:0">Enfoque sistemático: paso a paso</h3><p class="hint" style="margin-top:0">⚕ Pendiente de revisión médica. Estructura basada en el algoritmo de enfoque sistemático del PALS, redactada con palabras propias.</p><ol class="hub-ol">' +
+        '<li><b>Impresión inicial</b> (triángulo de arriba): apariencia, respiración y circulación, antes de tocar al paciente.</li>' +
+        '<li><b>¿No responde o necesita una intervención inmediata?</b> Sí: pedí ayuda y activá el equipo de emergencias. No: seguí con el punto 5.</li>' +
+        '<li><b>¿Respira y tiene pulso?</b> Si no respira (o solo boquea) o no tiene pulso: es un paro. Iniciá compresiones (<b>C-A-B</b>) con el botón EMERGENCIA de arriba y seguí el algoritmo de paro.</li>' +
+        '<li><b>No respira pero tiene pulso:</b> abrí y mantené la vía aérea, ventilá, dá oxígeno y conectá monitor y saturómetro. Si el pulso es lento con mala perfusión a pesar de oxigenar y ventilar, tratalo como paro (compresiones).</li>' +
+        '<li><b>Responde, con afectación grave de vía aérea, respiración o circulación:</b> mantené la vía aérea, ventilá y oxigená según necesite, y conectá monitor y saturómetro.</li>' +
+        '<li><b>Evaluar:</b> evaluación primaria (ABCDE, abajo), evaluación secundaria y estudios diagnósticos.</li>' +
+        '<li><b>Identificar</b> el problema (respiratorio, shock, neurológico, otro) y su gravedad.</li>' +
+        '<li><b>Intervenir</b> y volver a evaluar: repetí este ciclo hasta que el paciente se estabilice.</li>' +
+        '<li><b>Si en cualquier momento aparece un paro:</b> C-A-B. Tras recuperar la circulación, cuidados posparo y retomá evaluar–identificar–intervenir.</li></ol></div></div>' +
+      '<h3 class="hub-h">Evaluación primaria: ABCDE</h3><div class="abc-w">' + abc + "</div>" +
+      '<div class="card"><div class="calc"><h3 class="th" style="margin-top:0">Después de evaluar</h3><ul class="hub-ul">' + li(T.prox) + "</ul></div></div>" +
+      '<div class="card"><div class="calc"><h3 class="th" style="margin-top:0">Novedades de las guías AHA 2025 (pediatría)</h3><p class="hint" style="margin-top:0">⚕ Pendiente de revisión médica. Resumen cualitativo de «Aspectos destacados de las Guías AHA 2025 para RCP y ACE», redactado con palabras propias y sin dosis.</p><ul class="hub-ul">' + li(T.nov) + "</ul></div></div>" +
       base() + NOTE;
   }
 
@@ -191,7 +201,7 @@
     var v = $("#v-ind");
     if (!v || !D.IND) return;
     v.innerHTML = '<h2>Indicaciones y cálculos</h2><p class="sub">Para el trabajo diario en sala: balances, nutrición, analgosedación, infusiones y controles.</p>' +
-      D.IND.map(function (g) { return '<h3 class="hub-h">' + esc(g.n) + '</h3><div class="hl-l">' + g.t.map(link).join("") + "</div>"; }).join("") +
+      D.IND.map(function (g) { return '<h3 class="hub-h">' + esc(g.n) + '</h3>' + (g.t ? '<div class="hl-l">' + g.t.map(link).join("") + "</div>" : '<p class="hint">' + esc(g.pend || "") + "</p>"); }).join("") +
       '<h3 class="hub-h">En preparación</h3><div class="card"><div class="calc"><ul class="hub-ul">' +
       (D.IND_PEND || []).map(function (x) { return "<li><b>" + esc(x.n) + "</b>: " + esc(x.d) + "</li>"; }).join("") +
       '</ul><p class="hint" style="margin:8px 0 0">Contenido pendiente de redacción y validación por el servicio. No se agregan indicaciones ni periodicidades sin esa revisión.</p></div></div>' + NOTE;
